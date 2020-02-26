@@ -34,7 +34,7 @@ console.log(posizioneBombe);
 
 var esplosione = false; //se è false, esplode e la partita finisce
 
-while ((numeroTentativi.length < 5) && (esplosione == false)) { // abbiamo 84 tentativi, calcolati sapendo di avere 16 bombe e 100 campi; se ne inserisci di più, esplosione == perdi
+while ((numeroTentativi.length < limiteMax) && (esplosione == false)) { // abbiamo 84 tentativi, calcolati sapendo di avere 16 bombe e 100 campi; se ne inserisci di più, esplosione == perdi
     var number = parseInt(prompt('inserisci un numero da 1 a 100'));
     if (!isNaN(number)) { //se non è un numero esce l'alert che mi ricorda di inserire un numero
 
@@ -81,8 +81,29 @@ return posizBombe;
 }
 
 //Solita funzione per creare a random un numero
-var random = generaRandom(0, 100)
+
 function generaRandom(min, max) {
      var centoRandom = Math.floor(Math.random() * (max - min + 1) ) + min;
      return centoRandom;
  }
+
+
+//Funzione per selezionare la difficoltà
+ /*
+ function sceltaDifficolta(){
+     var scelta = prompt('inserisci difficoltà')
+     switch (scelta) {
+        case '1':
+             var dimCampo = 100;
+              break;
+        case '2':
+              var dimCampo = 80;
+              break;
+        case '3':
+              var dimCampo = 50;
+              break;
+        default: dimCampo = 100;
+
+      }
+ }
+ */
