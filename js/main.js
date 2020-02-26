@@ -1,59 +1,64 @@
-/*/*
+/*
+1.Genera 16 numeri random diversi da 1...100 e li metto su un array
+    1.1 creo un array vuoto
+    1.2 Inserisco i numeri delle bombe nell'array
+       1.2.1 Controllo che non ci siano numeri uguali
+2.Selezione utente
+    2.1 Creo un array vuoto per i tentativi
+    2.2 Chiediamo un numero tra 1...100
+3. Logica del gioco:
+    - Ripetizione del NUMERO
+    1. il numero inserito è incluso nell'array numeriInseriti
+    - prende una bomba
+    1. il numero inserito è incluso nell'array bombe
+    - inserire il numero nell'array dei numeriInseriti
+    -se lunghezza numeri inseriti == numeri senza mine ALLORA ---> hai vinto
+    ES: Numeri senza mine = 100 - 16 (Ovvero numero mine Campo)
 
-1. Il computer deve generare 16 numeri casuali tra 1 e 100.
-2. In seguito deve chiedere all’utente di inserire un numero alla volta, sempre compreso tra 1 e 100.
-3. Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
-4. La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
-Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
-
-
+Ultimo. Gestione errori.
+    1 numero >= 1 e numero <= 100
+    2 numero deve essere un NUMERO
 */
 
-//1. Il computer deve generare 16 numeri casuali tra 1 e 100.
+//Creo i 2 array vuoi
+var numeroTentativi = [];
+
+//Creo i valori che conosco: la dimensione del campo, il numero di mine, e il limite max tolgiendo le mine al numero del campo
+var dimensioneCampo = 100;
+var numeroMine = 16;
+var limiteMax = dimensioneCampo - numeroMine;
 
 
-// Genero numeri random da 1 a 100:
-var somma = generaRandomCento(1, 100); //----> Variabile per far capire che questa mi creerà numeri da 1 a 100
+var posizioneMine = mineInCampo(numeroMine, dimensioneCampo);
+console.log(posizioneMine);
 
-function generaRandomCento(min, max) {
+
+
+
+
+
+
+
+
+
+
+
+
+//Genero 16 numeri casuali su 100 numeri:
+function mineInCampo(numMine, dimCampo){ //numMine = 16 (numeroMine) --- dimCampo = 100 (dimensioneCampo)                               ----> 16, 100
+    var posizMine = []; //creo l'array vuoto
+while ( posizMine.length <= numMine){ // la lunghezza del mio array sarà minore = al numero di Mine (16)                               ----> , 16
+    var random = generaRandom(0, dimCampo); // Richiamo funzione numeri random, e  gli dico la dimensione da 1 a dimensioneCampo (100) ----> 1, 100
+    if (posizMine.includes(random) == false) { //Con il false scarto tutti i possibili doppioni
+        posizMine.push(random); // Pusho la somma nell'array
+    }
+}
+return posizMine;
+}
+
+console.log(posizioneMine);
+
+function generaRandom(min, max) {
      var centoRandom = Math.floor(Math.random() * (max - min + 1) ) + min;
      return centoRandom;
  }
-
-//Genero 16 numeri casuali su 100 numeri:
-
-var array = [];
-
-while ( array.length < 16){
-    var random = generaRandomCento(1, 100); // Richiamo funzione numeri random
-    if (array.includes(random) == false) { //Con l'if scarto tutti i possibili doppioni
-        array.push(random); // Pusho la somma nell'array
-    }
-}
-
-console.log(array);
-
-//2. Il computer deve chiedere all’utente di inserire un numero alla volta, sempre compreso tra 1 e 100.
-//3 Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
-
-var number = parseInt(prompt("Inserisci un numero da 1 a 100; hai 3 tentativi per vincere"));
-switch (number <= 16) {
-    case somma == number:
-        alert("BOOOOM! Hai vinto!"); // ----> scatta l'alert vittoria se il numero è compreso
-        break;
-    case somma !== number:
-        alert ('sbagliato'); // ----> scatta l'alert sbagliato se non è compreso
-        parseInt(prompt('riprova'));
-        alert ('Hai finito i tentativi; hai perso');
-        default:
-}
-
-console.log(number);
-
-
-
-var somma = somma1(random, number);
-
-function somma1(num1, num2){
-    return num1 == num2
-}
