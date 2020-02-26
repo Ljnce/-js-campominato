@@ -29,18 +29,19 @@ var numeroBombe = 16;
 var limiteMax = dimensioneCampo - numeroBombe;
 
 
-var posizioneMine = mineInCampo(numeroMine, dimensioneCampo); //array creato dentro la funzione
-console.log(posizioneMine);
+var posizioneBombe = mineInCampo(numeroBombe, dimensioneCampo); //array creato dentro la funzione
+console.log(posizioneBombe);
 
 var esplosione = false; //se è false, esplode e la partita finisce
 
-while (numeroTentativi.lenght <= limiteMax) && (esplosione == false) { // abbiamo 84 tentativi, calcolati sapendo di avere 16 bombe e 100 campi.
-
+while ((numeroTentativi.length < limiteMax) && (esplosione == false)) { // abbiamo 84 tentativi, calcolati sapendo di avere 16 bombe e 100 campi; se ne inserisci di più, esplosione == perdi
+    var number = parseInt(prompt('inserisci un numero da 1 a 100'));
+    if (!isNaN(number)) { //se non è un numero esce l'alert che mi ricorda di inserire un numero
+        alert('procedi pure');
+    } else if(isNaN(number)){
+        alert('non è un numero!');
 }
-
-
-
-
+}
 
 
 
@@ -59,6 +60,7 @@ return posizBombe;
 }
 
 //Solita funzione per creare a random un numero
+var random = generaRandom(0, 100)
 function generaRandom(min, max) {
      var centoRandom = Math.floor(Math.random() * (max - min + 1) ) + min;
      return centoRandom;
