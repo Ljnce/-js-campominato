@@ -34,14 +34,35 @@ console.log(posizioneBombe);
 
 var esplosione = false; //se è false, esplode e la partita finisce
 
-while ((numeroTentativi.length < limiteMax) && (esplosione == false)) { // abbiamo 84 tentativi, calcolati sapendo di avere 16 bombe e 100 campi; se ne inserisci di più, esplosione == perdi
+while ((numeroTentativi.length < 5) && (esplosione == false)) { // abbiamo 84 tentativi, calcolati sapendo di avere 16 bombe e 100 campi; se ne inserisci di più, esplosione == perdi
     var number = parseInt(prompt('inserisci un numero da 1 a 100'));
     if (!isNaN(number)) { //se non è un numero esce l'alert che mi ricorda di inserire un numero
-        alert('procedi pure');
+
+    if (posizioneBombe.includes(number)) {
+        alert('booom hai vinto'); //se inserisco il numero corrispondente, vinco!
+        esplosione = true // il true mi serve per bloccare il tutto se esce il numero vincente
+    } else {
+        alert('riprova');
+    }
+
+    if (!posizioneBombe.includes(number)) {
+        alert('hai messo una bandierina')
+        console.log(numeroTentativi);
+    }
+        //controllo che il numero non sia una mina
+        //in caso sia una mina allora esplosione = true
+        //altrimenti inserisco il numero nei miei tentativi
     } else if(isNaN(number)){
         alert('non è un numero!');
+    }
 }
-}
+
+//controllo se ho perso
+// - potrei controllare se esplosione == true?
+// - potrei controllare se i tentativi sono minori del limite
+
+//in tutti gli altri casi ho vinto!
+//se voglio fare un controllo posso verificare se i tentativi sono uguali al limite
 
 
 
