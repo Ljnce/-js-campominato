@@ -25,16 +25,18 @@ var numeroTentativi = [];
 
 //Creo i valori che conosco: la dimensione del campo, il numero di mine, e il limite max tolgiendo le mine al numero del campo
 var dimensioneCampo = 100;
-var numeroMine = 16;
-var limiteMax = dimensioneCampo - numeroMine;
+var numeroBombe = 16;
+var limiteMax = dimensioneCampo - numeroBombe;
 
 
-var posizioneMine = mineInCampo(numeroMine, dimensioneCampo);
+var posizioneMine = mineInCampo(numeroMine, dimensioneCampo); //array creato dentro la funzione
 console.log(posizioneMine);
 
+var esplosione = false; //se è false, esplode e la partita finisce
 
+while (numeroTentativi.lenght <= limiteMax) && (esplosione == false) { // abbiamo 84 tentativi, calcolati sapendo di avere 16 bombe e 100 campi.
 
-
+}
 
 
 
@@ -45,19 +47,18 @@ console.log(posizioneMine);
 
 
 //Genero 16 numeri casuali su 100 numeri:
-function mineInCampo(numMine, dimCampo){ //numMine = 16 (numeroMine) --- dimCampo = 100 (dimensioneCampo)                               ----> 16, 100
-    var posizMine = []; //creo l'array vuoto
-while ( posizMine.length <= numMine){ // la lunghezza del mio array sarà minore = al numero di Mine (16)                               ----> , 16
+function mineInCampo(numBombe, dimCampo){ //numMine = 16 (numeroMine) --- dimCampo = 100 (dimensioneCampo)                               ----> 16, 100
+    var posizBombe = []; //creo l'array vuoto
+while ( posizBombe.length <= numBombe){ // la lunghezza del mio array sarà minore = al numero di Mine (16)                               ----> , 16
     var random = generaRandom(0, dimCampo); // Richiamo funzione numeri random, e  gli dico la dimensione da 1 a dimensioneCampo (100) ----> 1, 100
-    if (posizMine.includes(random) == false) { //Con il false scarto tutti i possibili doppioni
-        posizMine.push(random); // Pusho la somma nell'array
+    if (posizBombe.includes(random) == false) { //Con il false scarto tutti i possibili doppioni
+        posizBombe.push(random); // Pusho la somma nell'array
     }
 }
-return posizMine;
+return posizBombe;
 }
 
-console.log(posizioneMine);
-
+//Solita funzione per creare a random un numero
 function generaRandom(min, max) {
      var centoRandom = Math.floor(Math.random() * (max - min + 1) ) + min;
      return centoRandom;
